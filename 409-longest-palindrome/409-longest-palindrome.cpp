@@ -23,7 +23,7 @@ public:
                 m[it.first] = 1;
             }
         }
-        for (auto it: m) cout <<  "[" << it.first << "," << it.second << "] "; cout << endl;
+
         for (auto it: m)
         {
             if (it.second == 1)

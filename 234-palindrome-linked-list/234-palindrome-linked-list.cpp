@@ -21,12 +21,14 @@ public:
         }
         
         curr = head;
-        
-        while(curr)
+        int n = st.size();
+        int i = 0;
+        while(curr && i < n/2)
         {
             if (curr->val != st.top()) return false;
             curr = curr->next;
             st.pop();
+            i++;
         }
         return true;
     }

@@ -21,7 +21,7 @@ public:
                     v[i+j] = min(v[i+j], 1+v[i]);
                 }
                 
-                if (i+j == n-1) break;
+                if (i+j == n-1) return v[n-1];
             }
             // for (auto k: v) cout << k << " "; cout << endl;
             // cout << "==========\n" ;

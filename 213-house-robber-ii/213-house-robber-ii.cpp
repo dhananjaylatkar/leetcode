@@ -1,6 +1,5 @@
 class Solution {
 public:
-    int res = -1;
     int dp[1001][2];
     int helper(vector<int>& nums, int idx, bool visitedFirst)
     {

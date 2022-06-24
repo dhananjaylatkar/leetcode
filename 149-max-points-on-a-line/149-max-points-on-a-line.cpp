@@ -1,10 +1,5 @@
 class Solution {
 public:
-    double getSlope(vector<int> &a, vector<int> &b)
-    {
-        if (a[1] == b[1]) return INT_MAX;
-        return ((float)(a[0]-b[0])/((float)a[1]-b[1])) *1e5;
-    }
     int maxPoints(vector<vector<int>>& points) {
         int n = points.size();
         int res = 0;

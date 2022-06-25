@@ -1,6 +1,5 @@
 class Solution {
 public:
-    int orig;
     unordered_set<int> s;
     bool helper(int n)
     {

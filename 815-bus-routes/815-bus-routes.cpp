@@ -40,7 +40,7 @@ public:
         {
             for (int j = i+1; j < n; j++)
             {
-                if (i != j && isIntersection(routes[i], routes[j]))
+                if (isIntersection(routes[i], routes[j]))
                 {
                     graph[i].push_back(j);
                     graph[j].push_back(i);

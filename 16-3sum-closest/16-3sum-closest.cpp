@@ -29,6 +29,7 @@ public:
                     l++;
                 }
             }
+            if (i+1 < n && nums[i] == nums[i+1]) i++;
         }
         
         return res;

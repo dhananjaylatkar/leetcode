@@ -2,20 +2,20 @@ class Solution {
 public:
     int numMatchingSubseq(string s, vector<string>& words) {
         unordered_map<char, queue<string>> map;
-        vector<int> alpha(26, 0);
+//         vector<int> alpha(26, 0);
         
-        for (int i = 0; i < s.length(); i++)
-        {
-            alpha[s[i]-'a']++;
-        }
+//         for (int i = 0; i < s.length(); i++)
+//         {
+//             alpha[s[i]-'a']++;
+//         }
         
         for (int i = 0; i < words.size(); i++)
         {
             string curr = words[i];
-            if (alpha[curr[0]-'a'])
-            {
+            // if (alpha[curr[0]-'a'])
+            // {
                 map[curr[0]].push(curr);
-            }
+            // }
         }
         
         int res = 0;
@@ -36,7 +36,7 @@ public:
                 }
                 else
                 {
-                    if (alpha[_curr[0]-'a'])
+                    // if (alpha[_curr[0]-'a'])
                     map[_curr[0]].push(_curr);
                 }
             }

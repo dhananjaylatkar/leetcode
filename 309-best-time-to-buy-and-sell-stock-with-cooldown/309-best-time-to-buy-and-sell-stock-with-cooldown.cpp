@@ -24,6 +24,7 @@ public:
         {
             // sell
             p1 = prices[curr] + helper(prices, curr+2, true);
+            // don't sell
             p2 = helper(prices, curr+1, buying);
         }
         

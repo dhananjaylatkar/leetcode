@@ -4,26 +4,23 @@ public:
         int n = nums.size();
         if (n < 3) return 0;
         
-        int curr_len = 1;
         int res = 0;
-        int prev_diff = nums[1] - nums[0];
-        for (int i = 1; i < n; i++)
+        int max_len = 2;
+        int diff = nums[1] - nums[0];
+        for (int i = 2; i < n; i++)
         {
-            int curr_diff = nums[i] - nums[i-1];
-            if (curr_diff == prev_diff)
+            if (nums[i] - nums[i-1] == diff)
             {
-                curr_len++;
-                if (curr_len >= 3)
-                {
-                    res += curr_len - 2;
-                }
+                max_len++;
             }
             else
             {
-                prev_diff = curr_diff;
-                curr_len = 2;
+                res += (max_len-2)*(max_len-1)/2;
+                max_len = 2;
+                diff = nums[i] - nums[i-1];
             }
         }
+        res += (max_len-2)*(max_len-1)/2;
         return res;
     }
 };

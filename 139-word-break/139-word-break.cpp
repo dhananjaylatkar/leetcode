@@ -1,40 +1,49 @@
 class Solution {
 public:
-    unordered_map<int, bool> m;
-    bool helper(string &s, vector<string>& wordDict, int len)
+    int dp[301];
+    bool helper(string s, int idx, vector<string>& wordDict)
     {
-        if (m.count(len))
+        int n = s.length();
+        
+        if (idx == n)
         {
-            return m[len];
-        }
-        if (s.length() == len)
-        {
-            m[len] = true;
             return true;
         }
-
-        if (s.length() < len)
-        {
-            m[len] = false;
-            return false;
-        }
         
-        for (int i = 0; i < wordDict.size(); i++)
+        if (dp[idx] != -1) return dp[idx];
+        
+        bool res = false;
+        
+        for (string word: wordDict)
         {
-            int w_l = wordDict[i].length();
-            if (s.substr(len, w_l) == wordDict[i])
+            int s_i = idx;
+            int i = 0;
+            bool is_word_present = true;
+            while (i < word.length() && s_i < n)
             {
-                if (helper(s, wordDict, len+w_l))
+                if (word[i] != s[s_i])
                 {
-                    m[len] = true;
-                    return true;
+                    is_word_present = false;
+                    break;
+                }
+                i++;
+                s_i++;
+            }
+            
+            if (i == word.length() && is_word_present)
+            {
+                res |= helper(s, s_i, wordDict);
+                if (res)
+                {
+                    return dp[idx] = true;
                 }
             }
         }
-        m[len] = false;
-        return false;
+        
+        return dp[idx] = res;
     }
     bool wordBreak(string s, vector<string>& wordDict) {
-        return helper(s, wordDict, 0);
+        memset(dp, -1, sizeof(dp));
+        return helper(s, 0, wordDict);
     }
 };

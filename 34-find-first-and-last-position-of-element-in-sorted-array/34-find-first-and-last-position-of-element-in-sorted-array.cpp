@@ -3,66 +3,37 @@ public:
     vector<int> searchRange(vector<int>& nums, int target) {
         int l = 0;
         int h = nums.size()-1;
-        int start = -1;
-        int end = -1;
+        vector<int> res(2,-1);
         while (l <= h)
         {
-            int m = (l - h)/2 + h;
-            // cout << l << " " << h << " " << m << endl;
-            if (nums[m] == target)
+            int mid = l + (h-l)/2;
+            if (nums[mid] == target)
             {
-                if (m == 0)
+                int tmp = mid;
+                while (mid-1 >= 0 && nums[mid-1] == target)
                 {
-                    start = m;
-                    break;
+                    mid--;
                 }
-                if (nums[m-1] != target) 
+                res[0] = mid;
+                
+                mid = tmp;
+                
+                while (mid+1 < nums.size() && nums[mid+1] == target)
                 {
-                    start = m;
-                    break;
+                    mid++;
                 }
-                h = m-1;
+                res[1] = mid;
+                return res;
             }
-            else if (nums[m] > target)
+            else if (nums[mid] > target)
             {
-                h = m-1;
+                h = mid-1;
             }
             else
             {
-                l = m+1;
+                l = mid+1;
             }
         }
-        l = 0;
-        h = nums.size()-1;
-        while (l <= h)
-        {
-            int m = (l - h)/2 + h;
-            // cout << l << " " << h << " " << m << endl;
-            if (nums[m] == target)
-            {
-                if (m == nums.size()-1)
-                {
-                    end = m;
-                    break;
-                }
-                if (nums[m+1] != target) 
-                {
-                    end = m;
-                    break;
-                }
-                l = m+1;
-            }
-            else if (nums[m] > target)
-            {
-                h = m-1;
-            }
-            else
-            {
-                l = m+1;
-            }
-        }
-        // cout << start << endl;
-        // cout << end << endl;
-        return {start, end};
+        return res;
     }
 };

@@ -1,21 +1,26 @@
 class Solution {
 public:
     int dp[201][201];
-    int helper(vector<vector<int>>& t, int row, int col)
+    int helper(vector<vector<int>>& t, int row, int idx)
     {
-        int m = t.size();
-        if (row >= m) return 0;
-        int n = t[row].size();
-        if (col >= n) return 0;
+        int n = t.size();
+        if (row == n)
+        {
+            return 0;
+        }
         
-        if (dp[row][col] != -1) return dp[row][col];
-        int p1 = t[row][col] + helper(t, row+1, col);
-        int p2 = t[row][col] + helper(t, row+1, col+1);
+        if (dp[row][idx] != -1) return dp[row][idx];
         
-        dp[row][col] = min(p1, p2);
-        return dp[row][col];
+        int p1 = INT_MAX;
+        int p2 = INT_MAX;
+
+        if (idx < t[row].size())
+        {
+            p1 = t[row][idx] + helper(t, row+1, idx+1);
+            p2 = t[row][idx] + helper(t, row+1, idx);
+        }
+        return dp[row][idx]=min(p1, p2);
     }
-    
     int minimumTotal(vector<vector<int>>& triangle) {
         memset(dp, -1, sizeof(dp));
         return helper(triangle, 0, 0);

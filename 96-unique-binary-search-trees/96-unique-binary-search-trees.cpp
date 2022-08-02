@@ -1,8 +1,17 @@
 class Solution {
 public:
     int numTrees(int n) {
-        vector<int> dp(n+1, 1);
+        /*
+            [1, 2,3,4]  root = 1
+            [1, 2, 3,4] root = 2
+            [1,2, 3, 4] root = 3
+            [1,2,3, 4]  root = 4
+            
+            We find number of trees possible for all roots.
+            Base condition = 0 => 1 and 1 => 1
+        */
         
+        vector<int> dp(n+1, 1);
         for (int i = 2; i < n+1; i++)
         {
             int total = 0;

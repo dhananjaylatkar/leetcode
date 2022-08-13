@@ -1,5 +1,28 @@
 class Solution {
 public:
+    unordered_map<string, bool> memo;
+    bool isValid (unordered_map<string, int> words_map, string sub, int word_len)
+    {
+        if (memo.find(sub) != memo.end()) return memo[sub];
+        for (int j = 0; j < sub.length(); j += word_len)
+        {
+            string curr = sub.substr(j, word_len);
+            if (words_map.find(curr) != words_map.end())
+            {
+                words_map[curr]--;
+                if (words_map[curr] < 0)
+                {
+                    return memo[sub]=false;
+                }
+            }
+            else
+            {
+                return memo[sub]=false;
+            }
+        }
+        
+        return memo[sub]=true;
+    }
     vector<int> findSubstring(string s, vector<string>& words) {
         vector<int> res;
         int n = s.length();
@@ -11,34 +34,13 @@ public:
         {
             words_map[w]++;
         }
-        
-        for (int i = 0; i < n; i++)
+        int i = 0;
+        for (int i = 0; i + all_word_len <= n ; i++)
         {
-            unordered_map<string, int> found_words_map;
-            
-            for (int j = i; j < n && j < i+all_word_len; j += word_len)
-            {
-                string curr = s.substr(j, word_len);
-                
-                if (words_map.find(curr) != words_map.end())
-                {
-                    found_words_map[curr] ++;
-                    if (found_words_map[curr] > words_map[curr])
-                    {
-                        // too many words found
-                        break;
-                    }
-                    
-                }
-                else
-                {
-                    // unknown word detected
-                    break;
-                }
-            }
-            if (found_words_map == words_map)
+            if (isValid(words_map, s.substr(i, all_word_len), word_len))
             {
                 res.push_back(i);
+                
             }
         }
         return res;

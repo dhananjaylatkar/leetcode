@@ -28,7 +28,7 @@ public:
                 else if (data[i] >> 4 == 0b1110)
                 {
                     // maybe 3 bytes?
-                    if (i+1 < n && i+2 < n 
+                    if (i+2 < n 
                         && data[i+1] >> 6 == 0b10 
                         && data[i+2] >> 6 == 0b10)
                     {
@@ -42,7 +42,7 @@ public:
                 else if (data[i] >> 3 == 0b11110)
                 {
                     // maybe 4 bytes
-                    if (i+1 < n && i+2 < n && i+3 < n
+                    if (i+3 < n
                         && data[i+1] >> 6 == 0b10 
                         && data[i+2] >> 6 == 0b10
                         && data[i+3] >> 6 == 0b10)

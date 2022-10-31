@@ -26,7 +26,7 @@ public:
             i++;
         }
 
-        while (i < n && !isalpha(s[i]) && s[i] != ' ' && s[i] != '.' && s[i] != '-' && s[i] != '+')
+        while (i < n && isdigit(s[i]))
         {
             long long tmp = 10*res + int(s[i]-'0');
 

@@ -17,7 +17,6 @@ public:
         int res = 0;
         while (!pq.empty())
         {
-            cout << pq.top() << " ";
             res += pq.top();
             pq.pop();
         }
